@@ -1,0 +1,146 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+
+<html>
+ <head>
+ <title></title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="bootstrap.min.css" rel="stylesheet" media="screen">
+<link rel="stylesheet" type="text/css" href="style.css" />
+<script src="jquery-1.9.1.js" rel="stylesheet"></script>
+<script src="validate.js" rel="stylesheet"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"> </script>
+
+<script src="bootstrap.min.js" rel="stylesheet"></script>
+
+<script src="validate.min.js" rel="stylesheet"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+
+    $("#registration-form").validate({
+            rules: {
+                street: { required: true,  
+                           
+                },
+                city: {  required: true,   
+                         
+                },
+                state: {           
+                    required: true,   
+                    
+                },
+              
+            },
+            messages: {              
+               street: {
+                      required:"This field is required",
+                      },
+               
+                city: {
+                       required:"This field is required",},
+                state: {
+                 required:"This field is required"},
+            },
+            submitHandler: function(form) {
+                   $(form).ajaxSubmit({
+                            url:"http://cs-server.usc.edu:25452/json.php",
+                           type:"GET",
+                            dataType : 'json',
+                        success: function(json){
+                            alert('inside');
+                           },
+	error: function(x,y,z){
+alert('error: \n'+x+'\n'+y+'\n'+z);
+},
+                    });
+            }
+
+        });  
+
+$('#registration-form :input').blur(function() {
+    $('#registration-form').validate().form();
+});
+
+
+})
+</script>
+</head>
+
+<body>
+<form id="registration-form" class="form-horizontal">
+<h3>Search your Property Here</h3>
+<div class="form-control-group">
+            <label class="control-label" for="street">Street Address*:</label>
+<div class="controls">
+              <input type="text" class="input-xlarge" name="street" value="" id="street" placeholder="Address" class="required"></div>
+</div>
+<div class="form-control-group">
+            <label class="control-label" for="street">City*:</label>
+<div class="controls">
+              <input type="text" class="input-xlarge" name="city" placeholder="City" value="" id="city" placeholder="City" class="required"></div>
+</div>
+
+<div class="form-control-group">
+            <label class="control-label" for="state" class="required">State*:</label>
+<div class="controls">
+              <select name="state" id="state">
+			 <option value= "">  </option>
+                <option value="AL">AL</option>
+				<option value="AK">AK</option>
+				<option value="AZ">AZ</option>
+				<option value="AR">AR</option>
+				<option value="CA">CA</option>
+				<option value="CO">CO</option>
+				<option value="CT">CT</option>
+				<option value="DE">DE</option>
+				<option value="DC">DC</option>
+				<option value="FL">FL</option>
+				<option value="GA">GA</option>
+				<option value="HI">HI</option>
+				<option value="ID">ID</option>
+				<option value="IL">IL</option>
+				<option value="IA">IA</option>
+				<option value="KS">KS</option>
+				<option value="LA">LA</option>
+				<option value="ME">ME</option>
+				<option value="MD">MD</option>
+				<option value="MA">MA</option>
+				<option value="MI">MI</option>
+				<option value="MN">MN</option>
+				<option value="MS">MS</option>
+				<option value="MO">MO</option>
+				<option value="MT">MT</option>
+				<option value="NV">NV</option>
+				<option value="NE">NE</option>
+				<option value="NH">NH</option>
+				<option value="NJ">NJ</option>
+				<option value="NM">NM</option>
+				<option value="NY">NY</option>
+				<option value="NC">NC</option>
+				<option value="ND">ND</option>
+				<option value="OH">OH</option>
+				<option value="OK">OK</option>
+				<option value="OR">OR</option>
+				<option value="PA">PA</option>
+				<option value="RI">RI</option>
+				<option value="SC">SC</option>
+				<option value="SD">SD</option>
+				<option value="TN">TN</option>
+				<option value="TX">TX</option>
+				<option value="UT">UT</option>
+				<option value="VT">VT</option>
+				<option value="VA">VA</option>
+				<option value="WA">WA</option>
+				<option value="WV">WV</option>
+				<option value="WI">WI</option>
+				<option value="WY">WY</option>
+
+			</select>
+</div>
+<div class="form-actions">
+ <button type="submit" class="btn btn-success btn-large" id="btnValidate" onclick=>Submit</button></div>
+<form>
+<!-- <script>
+$("#registration-form").validate();
+</script> -->
+</body>
+<html>
